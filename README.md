@@ -38,10 +38,3 @@ This project was built from the ground up to demonstrate a modern, robust, and s
 
 This application uses a non-blocking architecture to handle potentially long-running AI tasks.
 
-1.  The **React Frontend** sends a `POST` request to the `/generate_report` endpoint with a topic.
-2.  The **FastAPI Backend** immediately accepts the request, creates a unique `job_id`, and starts a background task. It instantly returns the `job_id` to the frontend.
-3.  The frontend UI enters a "processing" state and begins to **poll** the `/report_status/{job_id}` endpoint every few seconds.
-4.  In the background, the backend task uses **LangChain** to search the web, then sends the results and a prompt to the **Groq LLM** to generate a summary.
-5.  The generated summary is then sent to the **ElevenLabs API** to create an audio file, which is saved to a static directory on the server.
-6.  The job status and results (summary and audio URL) are stored in memory.
-7.  When the frontend's polling request sees the job status is "complete", it fetches the results and updates the UI to display the text summary and an audio player.
