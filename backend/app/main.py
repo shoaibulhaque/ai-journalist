@@ -15,7 +15,7 @@ from fastapi.staticfiles import StaticFiles
 # Pydantic Models
 from .models import GenerateRequest, JobResponse, StatusResponse
 
-# Service
+# Services
 from .services.summarizer import generate_summary_for_topic
 from .services.audio_generator import convert_text_to_audio
 
@@ -25,7 +25,7 @@ app = FastAPI(title="AI Journalist Backend")
 # Allow all origins for development
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # Change to specific origins in production!
+    allow_origins=["*"],  # Change to specific origins in production
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
